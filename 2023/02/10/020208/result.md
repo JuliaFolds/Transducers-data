@@ -1,0 +1,417 @@
+# Multi-thread benchmark result
+
+* Pull request commit: [`d42b9c756c5f02a1c72a0a9e3908719a3037bbf5`](https://github.com/JuliaFolds/Transducers.jl/commit/d42b9c756c5f02a1c72a0a9e3908719a3037bbf5)
+* Pull request: <https://github.com/JuliaFolds/Transducers.jl/pull/243> (Update */Manifest.toml)
+
+# Judge result
+# Benchmark Report for */home/runner/work/Transducers.jl/Transducers.jl*
+
+## Job Properties
+* Time of benchmarks:
+    - Target: 10 Feb 2023 - 01:56
+    - Baseline: 10 Feb 2023 - 02:01
+* Package commits:
+    - Target: 6524c1
+    - Baseline: f8d0df
+* Julia commits:
+    - Target: 742b9a
+    - Baseline: 742b9a
+* Julia command flags:
+    - Target: None
+    - Baseline: None
+* Environment variables:
+    - Target: `JULIA_NUM_THREADS => 2`
+    - Baseline: `JULIA_NUM_THREADS => 2`
+
+## Results
+A ratio greater than `1.0` denotes a possible regression (marked with :x:), while a ratio less
+than `1.0` denotes a possible improvement (marked with :white_check_mark:). Only significant results - results
+that indicate possible regressions or improvements - are shown below (thus, an empty table means that all
+benchmark results remained invariant between builds).
+
+| ID                                                  | time ratio                   | memory ratio                 |
+|-----------------------------------------------------|------------------------------|------------------------------|
+| `["findfirst", "n=1000", "reduce", "basesize=128"]` | 0.62 (5%) :white_check_mark: | 0.64 (1%) :white_check_mark: |
+| `["findfirst", "n=1000", "reduce", "basesize=256"]` |                1.13 (5%) :x: |                1.09 (1%) :x: |
+| `["findfirst", "n=1000", "reduce", "basesize=512"]` |                1.30 (5%) :x: |                1.33 (1%) :x: |
+| `["findfirst", "n=400", "reduce", "basesize=128"]`  | 0.95 (5%) :white_check_mark: | 0.94 (1%) :white_check_mark: |
+| `["findfirst", "n=400", "reduce", "basesize=256"]`  |                   0.99 (5%)  |                1.02 (1%) :x: |
+| `["findfirst", "n=400", "reduce", "basesize=512"]`  | 0.94 (5%) :white_check_mark: | 0.93 (1%) :white_check_mark: |
+| `["findfirst", "n=500", "reduce", "basesize=128"]`  |                1.07 (5%) :x: |                1.15 (1%) :x: |
+| `["findfirst", "n=500", "reduce", "basesize=256"]`  | 0.90 (5%) :white_check_mark: | 0.91 (1%) :white_check_mark: |
+| `["findfirst", "n=500", "reduce", "basesize=512"]`  | 0.79 (5%) :white_check_mark: | 0.80 (1%) :white_check_mark: |
+| `["parallel_histogram", "comm", "basesize=16384"]`  |                1.09 (5%) :x: |                   1.01 (1%)  |
+| `["splitby", "count", "foldl"]`                     |                1.05 (5%) :x: |                   1.00 (1%)  |
+| `["words", "nthreads=2"]`                           |                1.07 (5%) :x: |                1.01 (1%) :x: |
+
+## Benchmark Group List
+Here's a list of all the benchmark groups executed by this job:
+
+- `["collect", "assoc"]`
+- `["collect"]`
+- `["collect", "unordered"]`
+- `["findfirst", "n=1000"]`
+- `["findfirst", "n=1000", "reduce"]`
+- `["findfirst", "n=400"]`
+- `["findfirst", "n=400", "reduce"]`
+- `["findfirst", "n=500"]`
+- `["findfirst", "n=500", "reduce"]`
+- `["overhead"]`
+- `["parallel_histogram", "assoc"]`
+- `["parallel_histogram", "comm"]`
+- `["parallel_histogram"]`
+- `["partition_length_maximum", "rand"]`
+- `["splitby", "count"]`
+- `["sum", "random"]`
+- `["sum", "random", "reduce"]`
+- `["sum", "uniform"]`
+- `["sum", "uniform", "reduce"]`
+- `["sum", "valley"]`
+- `["sum", "valley", "reduce"]`
+- `["words"]`
+
+## Julia versioninfo
+
+### Target
+```
+Julia Version 1.7.3
+Commit 742b9abb4d (2022-05-06 12:58 UTC)
+Platform Info:
+  OS: Linux (x86_64-pc-linux-gnu)
+      Ubuntu 22.04.1 LTS
+  uname: Linux 5.15.0-1031-azure #38-Ubuntu SMP Mon Jan 9 12:49:59 UTC 2023 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz: 
+              speed         user         nice          sys         idle          irq
+       #1  2793 MHz       5291 s          0 s        196 s       1398 s          0 s
+       #2  2793 MHz       5051 s          0 s        192 s       1621 s          0 s
+       
+  Memory: 6.781219482421875 GB (3794.3671875 MB free)
+  Uptime: 692.92 sec
+  Load Avg:  1.71  1.53  0.9
+  WORD_SIZE: 64
+  LIBM: libopenlibm
+  LLVM: libLLVM-12.0.1 (ORCJIT, icelake-server)
+```
+
+### Baseline
+```
+Julia Version 1.7.3
+Commit 742b9abb4d (2022-05-06 12:58 UTC)
+Platform Info:
+  OS: Linux (x86_64-pc-linux-gnu)
+      Ubuntu 22.04.1 LTS
+  uname: Linux 5.15.0-1031-azure #38-Ubuntu SMP Mon Jan 9 12:49:59 UTC 2023 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz: 
+              speed         user         nice          sys         idle          irq
+       #1  2793 MHz       7550 s          0 s        260 s       2114 s          0 s
+       #2  2793 MHz       7521 s          0 s        244 s       2140 s          0 s
+       
+  Memory: 6.781219482421875 GB (3750.875 MB free)
+  Uptime: 997.32 sec
+  Load Avg:  1.55  1.56  1.1
+  WORD_SIZE: 64
+  LIBM: libopenlibm
+  LLVM: libLLVM-12.0.1 (ORCJIT, icelake-server)
+```
+
+---
+# Target result
+# Benchmark Report for */home/runner/work/Transducers.jl/Transducers.jl*
+
+## Job Properties
+* Time of benchmark: 10 Feb 2023 - 1:56
+* Package commit: 6524c1
+* Julia commit: 742b9a
+* Julia command flags: None
+* Environment variables: `JULIA_NUM_THREADS => 2`
+
+## Results
+Below is a table of this job's results, obtained by running the benchmarks.
+The values listed in the `ID` column have the structure `[parent_group, child_group, ..., key]`, and can be used to
+index into the BaseBenchmarks suite to retrieve the corresponding benchmarks.
+The percentages accompanying time and memory values in the below table are noise tolerances. The "true"
+time/memory value for a given benchmark is expected to fall within this percentage of the reported value.
+An empty cell means that the value was zero.
+
+| ID                                                  | time            | GC time | memory          | allocations |
+|-----------------------------------------------------|----------------:|--------:|----------------:|------------:|
+| `["collect", "assoc", "basesize=1"]`                | 279.609 ms (5%) |         |  25.97 MiB (1%) |      306818 |
+| `["collect", "assoc", "basesize=1024"]`             | 238.639 ms (5%) |         |   2.61 MiB (1%) |         456 |
+| `["collect", "assoc", "basesize=32"]`               | 240.080 ms (5%) |         |   4.82 MiB (1%) |       11709 |
+| `["collect", "seq"]`                                | 477.489 ms (5%) |         | 812.73 KiB (1%) |          11 |
+| `["collect", "unordered", "basesize=1"]`            | 366.846 ms (5%) |         |  23.92 MiB (1%) |      413745 |
+| `["collect", "unordered", "basesize=1024"]`         | 250.135 ms (5%) |         |   1.01 MiB (1%) |        1017 |
+| `["collect", "unordered", "basesize=32"]`           | 260.584 ms (5%) |         |   1.59 MiB (1%) |       15040 |
+| `["findfirst", "n=1000", "foldl"]`                  | 737.851 ms (5%) |         |                 |             |
+| `["findfirst", "n=1000", "reduce", "basesize=128"]` | 402.184 ms (5%) |         | 232.73 KiB (1%) |        3272 |
+| `["findfirst", "n=1000", "reduce", "basesize=256"]` | 561.207 ms (5%) |         | 171.77 KiB (1%) |        2396 |
+| `["findfirst", "n=1000", "reduce", "basesize=512"]` | 661.617 ms (5%) |         | 108.64 KiB (1%) |        1512 |
+| `["findfirst", "n=400", "foldl"]`                   | 553.090 ms (5%) |         |                 |             |
+| `["findfirst", "n=400", "reduce", "basesize=128"]`  | 289.401 ms (5%) |         | 378.64 KiB (1%) |        5405 |
+| `["findfirst", "n=400", "reduce", "basesize=256"]`  | 290.139 ms (5%) |         | 200.86 KiB (1%) |        2873 |
+| `["findfirst", "n=400", "reduce", "basesize=512"]`  | 321.126 ms (5%) |         | 112.56 KiB (1%) |        1621 |
+| `["findfirst", "n=500", "foldl"]`                   |  95.947 ms (5%) |         |                 |             |
+| `["findfirst", "n=500", "reduce", "basesize=128"]`  | 201.821 ms (5%) |         | 250.42 KiB (1%) |        3442 |
+| `["findfirst", "n=500", "reduce", "basesize=256"]`  | 242.308 ms (5%) |         | 153.16 KiB (1%) |        2127 |
+| `["findfirst", "n=500", "reduce", "basesize=512"]`  | 123.732 ms (5%) |         |  56.83 KiB (1%) |         778 |
+| `["overhead", "default"]`                           |  72.199 μs (5%) |         |  32.70 KiB (1%) |         417 |
+| `["overhead", "stoppable=false"]`                   |  71.400 μs (5%) |         |  32.69 KiB (1%) |         416 |
+| `["overhead", "stoppable=true"]`                    |  80.799 μs (5%) |         |  44.25 KiB (1%) |         610 |
+| `["parallel_histogram", "assoc", "basesize=16384"]` |   3.740 ms (5%) |         | 728.91 KiB (1%) |          57 |
+| `["parallel_histogram", "assoc", "basesize=4096"]`  |   4.516 ms (5%) |         |   1.79 MiB (1%) |         216 |
+| `["parallel_histogram", "assoc", "basesize=8192"]`  |   4.126 ms (5%) |         |   1.42 MiB (1%) |         117 |
+| `["parallel_histogram", "comm", "basesize=16384"]`  |  15.687 ms (5%) |         |   1.67 MiB (1%) |        5273 |
+| `["parallel_histogram", "comm", "basesize=4096"]`   |  24.594 ms (5%) |         |   1.43 MiB (1%) |       12913 |
+| `["parallel_histogram", "comm", "basesize=8192"]`   |  21.513 ms (5%) |         |   1.36 MiB (1%) |        9408 |
+| `["parallel_histogram", "seq"]`                     |   6.657 ms (5%) |         | 364.16 KiB (1%) |          24 |
+| `["partition_length_maximum", "rand", "foldl"]`     |  41.111 ms (5%) |         |                 |             |
+| `["partition_length_maximum", "rand", "reduce"]`    |  20.574 ms (5%) |         |  736 bytes (1%) |          11 |
+| `["splitby", "count", "foldl"]`                     |   2.397 ms (5%) |         |                 |             |
+| `["splitby", "count", "man"]`                       |   1.528 ms (5%) |         |                 |             |
+| `["splitby", "count", "reduce"]`                    |   1.110 ms (5%) |         |   1.09 KiB (1%) |          19 |
+| `["sum", "random", "foldl"]`                        |  18.044 ms (5%) |         |                 |             |
+| `["sum", "random", "reduce", "basesize=128"]`       |   9.210 ms (5%) |         |  74.14 KiB (1%) |        1103 |
+| `["sum", "random", "reduce", "basesize=256"]`       |   9.121 ms (5%) |         |  36.80 KiB (1%) |         548 |
+| `["sum", "random", "reduce", "basesize=512"]`       |   9.075 ms (5%) |         |  18.11 KiB (1%) |         270 |
+| `["sum", "uniform", "foldl"]`                       |  17.729 ms (5%) |         |                 |             |
+| `["sum", "uniform", "reduce", "basesize=128"]`      |   9.045 ms (5%) |         |  74.20 KiB (1%) |        1105 |
+| `["sum", "uniform", "reduce", "basesize=256"]`      |   8.957 ms (5%) |         |  36.77 KiB (1%) |         547 |
+| `["sum", "uniform", "reduce", "basesize=512"]`      |   8.903 ms (5%) |         |  18.03 KiB (1%) |         268 |
+| `["sum", "valley", "foldl"]`                        |  18.144 ms (5%) |         |                 |             |
+| `["sum", "valley", "reduce", "basesize=128"]`       |   9.260 ms (5%) |         |  74.11 KiB (1%) |        1102 |
+| `["sum", "valley", "reduce", "basesize=256"]`       |   9.168 ms (5%) |         |  36.70 KiB (1%) |         545 |
+| `["sum", "valley", "reduce", "basesize=512"]`       |   9.157 ms (5%) |         |  18.00 KiB (1%) |         267 |
+| `["words", "nthreads=1"]`                           |  18.013 ms (5%) |         |  31.72 MiB (1%) |     1033267 |
+| `["words", "nthreads=2"]`                           |  12.497 ms (5%) |         |  32.43 MiB (1%) |     1033346 |
+| `["words", "nthreads=4"]`                           |  13.034 ms (5%) |         |  33.06 MiB (1%) |     1033493 |
+
+## Benchmark Group List
+Here's a list of all the benchmark groups executed by this job:
+
+- `["collect", "assoc"]`
+- `["collect"]`
+- `["collect", "unordered"]`
+- `["findfirst", "n=1000"]`
+- `["findfirst", "n=1000", "reduce"]`
+- `["findfirst", "n=400"]`
+- `["findfirst", "n=400", "reduce"]`
+- `["findfirst", "n=500"]`
+- `["findfirst", "n=500", "reduce"]`
+- `["overhead"]`
+- `["parallel_histogram", "assoc"]`
+- `["parallel_histogram", "comm"]`
+- `["parallel_histogram"]`
+- `["partition_length_maximum", "rand"]`
+- `["splitby", "count"]`
+- `["sum", "random"]`
+- `["sum", "random", "reduce"]`
+- `["sum", "uniform"]`
+- `["sum", "uniform", "reduce"]`
+- `["sum", "valley"]`
+- `["sum", "valley", "reduce"]`
+- `["words"]`
+
+## Julia versioninfo
+```
+Julia Version 1.7.3
+Commit 742b9abb4d (2022-05-06 12:58 UTC)
+Platform Info:
+  OS: Linux (x86_64-pc-linux-gnu)
+      Ubuntu 22.04.1 LTS
+  uname: Linux 5.15.0-1031-azure #38-Ubuntu SMP Mon Jan 9 12:49:59 UTC 2023 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz: 
+              speed         user         nice          sys         idle          irq
+       #1  2793 MHz       5291 s          0 s        196 s       1398 s          0 s
+       #2  2793 MHz       5051 s          0 s        192 s       1621 s          0 s
+       
+  Memory: 6.781219482421875 GB (3794.3671875 MB free)
+  Uptime: 692.92 sec
+  Load Avg:  1.71  1.53  0.9
+  WORD_SIZE: 64
+  LIBM: libopenlibm
+  LLVM: libLLVM-12.0.1 (ORCJIT, icelake-server)
+```
+
+---
+# Baseline result
+# Benchmark Report for */home/runner/work/Transducers.jl/Transducers.jl*
+
+## Job Properties
+* Time of benchmark: 10 Feb 2023 - 2:1
+* Package commit: f8d0df
+* Julia commit: 742b9a
+* Julia command flags: None
+* Environment variables: `JULIA_NUM_THREADS => 2`
+
+## Results
+Below is a table of this job's results, obtained by running the benchmarks.
+The values listed in the `ID` column have the structure `[parent_group, child_group, ..., key]`, and can be used to
+index into the BaseBenchmarks suite to retrieve the corresponding benchmarks.
+The percentages accompanying time and memory values in the below table are noise tolerances. The "true"
+time/memory value for a given benchmark is expected to fall within this percentage of the reported value.
+An empty cell means that the value was zero.
+
+| ID                                                  | time            | GC time | memory          | allocations |
+|-----------------------------------------------------|----------------:|--------:|----------------:|------------:|
+| `["collect", "assoc", "basesize=1"]`                | 279.441 ms (5%) |         |  25.97 MiB (1%) |      306875 |
+| `["collect", "assoc", "basesize=1024"]`             | 239.051 ms (5%) |         |   2.61 MiB (1%) |         455 |
+| `["collect", "assoc", "basesize=32"]`               | 240.183 ms (5%) |         |   4.82 MiB (1%) |       11703 |
+| `["collect", "seq"]`                                | 477.065 ms (5%) |         | 812.73 KiB (1%) |          11 |
+| `["collect", "unordered", "basesize=1"]`            | 367.976 ms (5%) |         |  23.91 MiB (1%) |      413257 |
+| `["collect", "unordered", "basesize=1024"]`         | 250.635 ms (5%) |         |   1.01 MiB (1%) |         995 |
+| `["collect", "unordered", "basesize=32"]`           | 260.933 ms (5%) |         |   1.59 MiB (1%) |       15043 |
+| `["findfirst", "n=1000", "foldl"]`                  | 742.206 ms (5%) |         |                 |             |
+| `["findfirst", "n=1000", "reduce", "basesize=128"]` | 644.253 ms (5%) |         | 362.66 KiB (1%) |        5067 |
+| `["findfirst", "n=1000", "reduce", "basesize=256"]` | 498.601 ms (5%) |         | 157.20 KiB (1%) |        2193 |
+| `["findfirst", "n=1000", "reduce", "basesize=512"]` | 507.284 ms (5%) |         |  81.42 KiB (1%) |        1149 |
+| `["findfirst", "n=400", "foldl"]`                   | 556.531 ms (5%) |         |                 |             |
+| `["findfirst", "n=400", "reduce", "basesize=128"]`  | 305.772 ms (5%) |         | 403.77 KiB (1%) |        5741 |
+| `["findfirst", "n=400", "reduce", "basesize=256"]`  | 292.591 ms (5%) |         | 197.14 KiB (1%) |        2833 |
+| `["findfirst", "n=400", "reduce", "basesize=512"]`  | 340.594 ms (5%) |         | 121.23 KiB (1%) |        1737 |
+| `["findfirst", "n=500", "foldl"]`                   |  96.446 ms (5%) |         |                 |             |
+| `["findfirst", "n=500", "reduce", "basesize=128"]`  | 188.788 ms (5%) |         | 217.31 KiB (1%) |        3020 |
+| `["findfirst", "n=500", "reduce", "basesize=256"]`  | 270.448 ms (5%) |         | 167.84 KiB (1%) |        2362 |
+| `["findfirst", "n=500", "reduce", "basesize=512"]`  | 155.782 ms (5%) |         |  71.17 KiB (1%) |         951 |
+| `["overhead", "default"]`                           |  72.000 μs (5%) |         |  32.73 KiB (1%) |         418 |
+| `["overhead", "stoppable=false"]`                   |  72.899 μs (5%) |         |  32.75 KiB (1%) |         418 |
+| `["overhead", "stoppable=true"]`                    |  82.600 μs (5%) |         |  44.25 KiB (1%) |         610 |
+| `["parallel_histogram", "assoc", "basesize=16384"]` |   3.760 ms (5%) |         | 728.91 KiB (1%) |          57 |
+| `["parallel_histogram", "assoc", "basesize=4096"]`  |   4.537 ms (5%) |         |   1.79 MiB (1%) |         216 |
+| `["parallel_histogram", "assoc", "basesize=8192"]`  |   4.152 ms (5%) |         |   1.42 MiB (1%) |         117 |
+| `["parallel_histogram", "comm", "basesize=16384"]`  |  14.377 ms (5%) |         |   1.65 MiB (1%) |        4886 |
+| `["parallel_histogram", "comm", "basesize=4096"]`   |  24.807 ms (5%) |         |   1.42 MiB (1%) |       12560 |
+| `["parallel_histogram", "comm", "basesize=8192"]`   |  21.873 ms (5%) |         |   1.35 MiB (1%) |       10214 |
+| `["parallel_histogram", "seq"]`                     |   6.725 ms (5%) |         | 364.16 KiB (1%) |          24 |
+| `["partition_length_maximum", "rand", "foldl"]`     |  41.188 ms (5%) |         |                 |             |
+| `["partition_length_maximum", "rand", "reduce"]`    |  20.596 ms (5%) |         |  736 bytes (1%) |          11 |
+| `["splitby", "count", "foldl"]`                     |   2.278 ms (5%) |         |                 |             |
+| `["splitby", "count", "man"]`                       |   1.528 ms (5%) |         |                 |             |
+| `["splitby", "count", "reduce"]`                    |   1.078 ms (5%) |         |   1.09 KiB (1%) |          19 |
+| `["sum", "random", "foldl"]`                        |  18.052 ms (5%) |         |                 |             |
+| `["sum", "random", "reduce", "basesize=128"]`       |   9.217 ms (5%) |         |  73.98 KiB (1%) |        1098 |
+| `["sum", "random", "reduce", "basesize=256"]`       |   9.112 ms (5%) |         |  36.67 KiB (1%) |         544 |
+| `["sum", "random", "reduce", "basesize=512"]`       |   9.078 ms (5%) |         |  18.08 KiB (1%) |         269 |
+| `["sum", "uniform", "foldl"]`                       |  17.718 ms (5%) |         |                 |             |
+| `["sum", "uniform", "reduce", "basesize=128"]`      |   9.051 ms (5%) |         |  74.17 KiB (1%) |        1104 |
+| `["sum", "uniform", "reduce", "basesize=256"]`      |   8.955 ms (5%) |         |  36.73 KiB (1%) |         546 |
+| `["sum", "uniform", "reduce", "basesize=512"]`      |   8.904 ms (5%) |         |  18.03 KiB (1%) |         268 |
+| `["sum", "valley", "foldl"]`                        |  18.131 ms (5%) |         |                 |             |
+| `["sum", "valley", "reduce", "basesize=128"]`       |   9.264 ms (5%) |         |  74.17 KiB (1%) |        1104 |
+| `["sum", "valley", "reduce", "basesize=256"]`       |   9.175 ms (5%) |         |  36.73 KiB (1%) |         546 |
+| `["sum", "valley", "reduce", "basesize=512"]`       |   9.162 ms (5%) |         |  18.00 KiB (1%) |         267 |
+| `["words", "nthreads=1"]`                           |  18.163 ms (5%) |         |  31.60 MiB (1%) |     1029290 |
+| `["words", "nthreads=2"]`                           |  11.645 ms (5%) |         |  31.96 MiB (1%) |     1029350 |
+| `["words", "nthreads=4"]`                           |  12.519 ms (5%) |         |  32.85 MiB (1%) |     1029494 |
+
+## Benchmark Group List
+Here's a list of all the benchmark groups executed by this job:
+
+- `["collect", "assoc"]`
+- `["collect"]`
+- `["collect", "unordered"]`
+- `["findfirst", "n=1000"]`
+- `["findfirst", "n=1000", "reduce"]`
+- `["findfirst", "n=400"]`
+- `["findfirst", "n=400", "reduce"]`
+- `["findfirst", "n=500"]`
+- `["findfirst", "n=500", "reduce"]`
+- `["overhead"]`
+- `["parallel_histogram", "assoc"]`
+- `["parallel_histogram", "comm"]`
+- `["parallel_histogram"]`
+- `["partition_length_maximum", "rand"]`
+- `["splitby", "count"]`
+- `["sum", "random"]`
+- `["sum", "random", "reduce"]`
+- `["sum", "uniform"]`
+- `["sum", "uniform", "reduce"]`
+- `["sum", "valley"]`
+- `["sum", "valley", "reduce"]`
+- `["words"]`
+
+## Julia versioninfo
+```
+Julia Version 1.7.3
+Commit 742b9abb4d (2022-05-06 12:58 UTC)
+Platform Info:
+  OS: Linux (x86_64-pc-linux-gnu)
+      Ubuntu 22.04.1 LTS
+  uname: Linux 5.15.0-1031-azure #38-Ubuntu SMP Mon Jan 9 12:49:59 UTC 2023 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz: 
+              speed         user         nice          sys         idle          irq
+       #1  2793 MHz       7550 s          0 s        260 s       2114 s          0 s
+       #2  2793 MHz       7521 s          0 s        244 s       2140 s          0 s
+       
+  Memory: 6.781219482421875 GB (3750.875 MB free)
+  Uptime: 997.32 sec
+  Load Avg:  1.55  1.56  1.1
+  WORD_SIZE: 64
+  LIBM: libopenlibm
+  LLVM: libLLVM-12.0.1 (ORCJIT, icelake-server)
+```
+
+---
+# Runtime information
+| Runtime Info | |
+|:--|:--|
+| BLAS #threads | 2 |
+| `BLAS.vendor()` | `openblas64` |
+| `Sys.CPU_THREADS` | 2 |
+
+`lscpu` output:
+
+    Architecture:                    x86_64
+    CPU op-mode(s):                  32-bit, 64-bit
+    Address sizes:                   46 bits physical, 48 bits virtual
+    Byte Order:                      Little Endian
+    CPU(s):                          2
+    On-line CPU(s) list:             0,1
+    Vendor ID:                       GenuineIntel
+    Model name:                      Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz
+    CPU family:                      6
+    Model:                           106
+    Thread(s) per core:              1
+    Core(s) per socket:              2
+    Socket(s):                       1
+    Stepping:                        6
+    BogoMIPS:                        5586.87
+    Flags:                           fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology cpuid pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase bmi1 hle avx2 smep bmi2 erms invpcid rtm avx512f avx512dq rdseed adx smap clflushopt avx512cd avx512bw avx512vl xsaveopt xsavec xsaves md_clear
+    Hypervisor vendor:               Microsoft
+    Virtualization type:             full
+    L1d cache:                       96 KiB (2 instances)
+    L1i cache:                       64 KiB (2 instances)
+    L2 cache:                        2.5 MiB (2 instances)
+    L3 cache:                        48 MiB (1 instance)
+    NUMA node(s):                    1
+    NUMA node0 CPU(s):               0,1
+    Vulnerability Itlb multihit:     KVM: Mitigation: VMX unsupported
+    Vulnerability L1tf:              Mitigation; PTE Inversion
+    Vulnerability Mds:               Mitigation; Clear CPU buffers; SMT Host state unknown
+    Vulnerability Meltdown:          Mitigation; PTI
+    Vulnerability Mmio stale data:   Vulnerable: Clear CPU buffers attempted, no microcode; SMT Host state unknown
+    Vulnerability Retbleed:          Not affected
+    Vulnerability Spec store bypass: Vulnerable
+    Vulnerability Spectre v1:        Mitigation; usercopy/swapgs barriers and __user pointer sanitization
+    Vulnerability Spectre v2:        Mitigation; Retpolines, STIBP disabled, RSB filling, PBRSB-eIBRS Not affected
+    Vulnerability Srbds:             Not affected
+    Vulnerability Tsx async abort:   Mitigation; Clear CPU buffers; SMT Host state unknown
+    
+
+| Cpu Property       | Value                                                   |
+|:------------------ |:------------------------------------------------------- |
+| Brand              | Intel(R) Xeon(R) Platinum 8370C CPU @ 2.80GHz           |
+| Vendor             | :Intel                                                  |
+| Architecture       | :UnknownIntel                                           |
+| Model              | Family: 0x06, Model: 0x6a, Stepping: 0x06, Type: 0x00   |
+| Cores              | 2 physical cores, 2 logical cores (on executing CPU)    |
+|                    | No Hyperthreading hardware capability detected          |
+| Clock Frequencies  | Not supported by CPU                                    |
+| Data Cache         | Level 1:3 : (48, 1280, 49152) kbytes                    |
+|                    | 64 byte cache line size                                 |
+| Address Size       | 48 bits virtual, 46 bits physical                       |
+| SIMD               | 512 bit = 64 byte max. SIMD vector size                 |
+| Time Stamp Counter | TSC is accessible via `rdtsc`                           |
+|                    | TSC increased at every clock cycle (non-invariant TSC)  |
+| Perf. Monitoring   | Performance Monitoring Counters (PMC) are not supported |
+| Hypervisor         | Yes, Microsoft                                          |
+
